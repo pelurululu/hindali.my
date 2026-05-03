@@ -8,7 +8,7 @@ const TRANSLATIONS = {
   en: {
     skipLink: "Skip to content",
     brandTitle: "Hind Ali",
-    brandSubtitle: "Travel, Quran, and Food",
+    brandSubtitle: "Travel · Quran · Food",
     menuToggle: "Menu",
     navHome: "Home",
     navTravel: "Travel",
@@ -16,114 +16,85 @@ const TRANSLATIONS = {
     navFood: "Food",
     navWhatsapp: "WhatsApp",
 
-    heroEyebrow: "The Master Brand",
-    heroTitle: 'A private world shaped by <span class="accent">Hind Ali</span>.',
+    heroEyebrow: "Based in Malaysia",
+    heroTitle: 'Three services. One person. <span class="accent">Hind Ali.</span>',
     heroCopy:
-      "hindali.my brings together three signature services under one refined identity: private travel guidance in Malaysia, one-to-one Quran tutoring, and carefully prepared Arab and Yemeni homemade food for intimate gatherings.",
-    heroPrimary: "Start a private enquiry",
-    heroSecondary: "Explore the three services",
+      "Private travel guiding for Arabic-speaking visitors, one-to-one Quran tutoring with a native Yemeni teacher, and homemade Arab food for gatherings and gifting — all reached through a single WhatsApp conversation.",
+    heroPrimary: "Send a message",
+    heroSecondary: "See the services",
 
-    heroStat1Value: "3",
-    heroStat1Label: "signature service pillars",
-    heroStat2Value: "AR · EN · BM",
-    heroStat2Label: "clear communication across audiences",
+    heroStat1Value: "Arabic",
+    heroStat1Label: "native speaker, born in Yemen",
+    heroStat2Value: "KL-based",
+    heroStat2Label: "serving families across Malaysia",
     heroStat3Value: "Direct",
-    heroStat3Label: "WhatsApp-first personal service",
+    heroStat3Label: "no middlemen, no booking apps",
 
-    quoteKicker: "Private, not generic",
-    quoteTitle: "One trusted name. Three meaningful offers.",
-    quoteCopy:
-      "Instead of feeling like three separate websites, the new experience presents Hind Ali as one premium personal brand with distinct pathways for travel, learning, and hospitality.",
-    quoteSource: "Designed as the main destination for hindali.my",
+    aboutKicker: "About Hind Ali",
+    aboutTitle: "Yemeni roots. A life built in Malaysia.",
+    aboutCopy:
+      "Hind has lived in Kuala Lumpur long enough to know exactly where to take a family, how to teach a nervous student, and what makes a meal feel like home. Everything she offers comes from that same personal knowledge — not a course, not a franchise.",
+    aboutContact: "Reach her directly — no agencies, no waiting lists.",
 
-    servicesEyebrow: "The Three Pillars",
-    servicesTitle: "Choose the world you want to enter first.",
+    heroQuote: "I do three things and I do them properly. That has always been enough.",
+    heroQuoteSource: "— Hind Ali",
+
+    servicesEyebrow: "The Three Services",
+    servicesTitle: "Pick the one that fits your need right now.",
     servicesCopy:
-      "Each service keeps its own personality, but all three now live inside one polished master brand designed for clarity, trust, and high-value direct enquiries.",
+      "Each service has its own page with full details, pricing context, and a direct WhatsApp button. Start there, or message Hind directly if you are not sure which fits.",
+
+    feelEyebrow: "What to Expect",
+    feelTitle: "What each service actually feels like.",
+    feelCopy: "Not marketing language — honest descriptions of what happens when you book each one.",
+
+    feelTravelLabel: "Travel",
+    feelTravelTitle: "You arrive without a plan. You leave knowing Malaysia properly.",
+    feelTravelCopy: "Hind handles the route, the timings, the food stops, and the Arabic communication. You focus on your family. No group tours, no rushing, no places that don't suit you.",
+    feelTravelCta: "See travel details",
+
+    feelQuranLabel: "Quran",
+    feelQuranTitle: "From uncertain recitation to reading with real confidence.",
+    feelQuranCopy: "Sessions are built around your current level. Children build the foundation early. Adults correct years of habit. Hind teaches in Arabic, English, or Malay — whichever lands better.",
+    feelQuranCta: "See class details",
+
+    feelFoodLabel: "Food",
+    feelFoodTitle: "Cooked the morning of. Guests always ask who made it.",
+    feelFoodCopy: "The rice, the sauces, the bread — all made fresh by Hind. No catering company. No reheated trays. Just home cooking that makes a gathering feel like a proper occasion.",
+    feelFoodCta: "See the menu",
 
     cardTravelLabel: "Private Travel",
     cardTravelTitle: "Hind Travel",
-    cardTravelCopy:
-      "Arabic-friendly private guiding in Malaysia, destination inspiration, and custom-made itineraries for families and international guests.",
-    cardTravelCta: "Explore travel",
+    cardTravelCopy: "Arabic-speaking private guide for families and solo visitors exploring Malaysia. Custom routes, halal food stops, and pacing that actually suits your group.",
+    cardTravelCta: "Travel details",
 
-    cardQuranLabel: "Private Learning",
+    cardQuranLabel: "Quran Classes",
     cardQuranTitle: "Hind Qalam",
-    cardQuranCopy:
-      "Personal Quran classes with a native Arabic teacher from Yemen, designed for children, teenagers, and adults.",
-    cardQuranCta: "Explore Quran classes",
+    cardQuranCopy: "One-to-one Quran lessons with a native Arabic teacher from Yemen. Structured sessions for children, teenagers, and adults at any level.",
+    cardQuranCta: "Class details",
 
-    cardFoodLabel: "Homemade Hospitality",
+    cardFoodLabel: "Homemade Food",
     cardFoodTitle: "Hind Food",
-    cardFoodCopy:
-      "Warm Arab and Yemeni homemade cooking, bread, and baking for small family events, gifting, and gatherings up to 50 pax.",
-    cardFoodCta: "Explore food ordering",
+    cardFoodCopy: "Arab and Yemeni home cooking made fresh for your event, family gathering, or gifting. Orders for up to 50 pax — all made by Hind herself.",
+    cardFoodCta: "Menu and ordering",
 
-    trustEyebrow: "Why This Brand Works",
-    trustTitle: "Luxury here means personal care, not distance.",
-    trustCopy:
-      "The reference sites inspired the editorial polish and exclusivity, but the core of hindali.my is still human: direct contact, thoughtful service, and a calm sense of trust.",
+    processEyebrow: "How to Book",
+    processTitle: "Three steps, then it is sorted.",
+    processCopy: "No forms, no payment portals, no waiting. A WhatsApp conversation that starts with the right context and moves quickly from there.",
 
-    trust1Title: "One face, one voice",
-    trust1Copy:
-      "The site keeps Hind Ali visible as the central personal brand so enquiries feel direct and trustworthy from the first click.",
-    trust2Title: "High-trust positioning",
-    trust2Copy:
-      "Every page uses premium visual hierarchy, concise messaging, and inquiry-led flows instead of cluttered marketplace mechanics.",
-    trust3Title: "Clear service separation",
-    trust3Copy:
-      "Travel, Quran, and food are distinct enough to understand immediately, while still feeling part of one elegant ecosystem.",
-    trust4Title: "Built for direct conversion",
-    trust4Copy:
-      "All main actions point to structured WhatsApp conversations with service-specific message templates.",
+    process1Title: "Choose your service",
+    process1Copy: "Read the Travel, Quran, or Food page. If you are between two or not sure, just message Hind and she will point you in the right direction.",
+    process2Title: "Tap the WhatsApp button",
+    process2Copy: "Each service page opens a pre-written message so Hind knows exactly what you need from the first word — no back-and-forth explaining.",
+    process3Title: "Confirm and go",
+    process3Copy: "Hind replies personally, confirms dates and availability, and handles everything directly. Scheduling and payment are all done with her — no third parties.",
 
-    previewEyebrow: "What Each Path Feels Like",
-    previewTitle: "Three different journeys, one consistent standard.",
-    previewCopy:
-      "The homepage previews the tone of each service so guests can decide quickly where they belong before opening the deeper dedicated page.",
+    ctaEyebrow: "Ready when you are",
+    ctaTitle: "One message is all it takes.",
+    ctaCopy: "Whether you know exactly which service you want or you just have a question — Hind reads and replies to every message personally.",
 
-    previewTravelLabel: "Travel Preview",
-    previewTravelTitle:
-      "Private routes through Malaysia, with calmer planning and Arabic-friendly communication.",
-    previewTravelCopy:
-      "From Kuala Lumpur icons to nature, halal-aware food stops, and custom family pacing, Hind Travel is positioned like a discreet concierge service rather than a mass tour listing.",
-    previewTravelCta: "Open travel page",
-
-    previewQuranLabel: "Quran Preview",
-    previewQuranTitle:
-      "Structured private Quran classes with warmth, discipline, and native Arabic guidance.",
-    previewQuranCopy:
-      "The Quran pathway centres on credibility, progress, and clear class structure, making it suitable both for families and serious adult learners.",
-    previewQuranCta: "Open Quran page",
-
-    previewFoodLabel: "Food Preview",
-    previewFoodTitle:
-      "Homemade Arab and Yemeni cooking for intimate gatherings, gifting, and small events.",
-    previewFoodCopy:
-      "The food experience stays warm and inviting, but is elevated with premium presentation, curated menu categories, and a refined ordering flow.",
-    previewFoodCta: "Open food page",
-
-    processEyebrow: "How Enquiries Work",
-    processTitle: "Simple steps, premium clarity.",
-    processCopy:
-      "The new master brand keeps the journey short. People discover the right service, understand the offer fast, and move into a direct WhatsApp conversation with context already prepared.",
-
-    process1Title: "Choose the right pathway",
-    process1Copy:
-      "Start from the homepage or go directly into Travel, Quran, or Food depending on the kind of enquiry.",
-    process2Title: "Read only what matters",
-    process2Copy:
-      "Each page presents the offer through editorial blocks, concise service details, and decision-ready information.",
-    process3Title: "Open WhatsApp with context",
-    process3Copy:
-      "The main buttons generate service-specific messages so the conversation starts clearly and efficiently.",
-
-    ctaEyebrow: "Begin With Hind Ali",
-    ctaTitle: "Start with one message and go to the right service from there.",
-    ctaCopy:
-      "Use the general enquiry button if you are still deciding, or jump straight to Travel, Quran, or Food if your need is already clear.",
-
-    footerTitle: "A personal world of travel, Quran, and hospitality.",
+    footerTitle: "Private services in Malaysia — travel, Quran, and home cooking.",
+    footerCopy: "Everything runs through Hind directly. No agencies, no platforms, no automated replies. Each enquiry is handled personally.",
     floatingCta: "Message Hind Ali",
   },
 
