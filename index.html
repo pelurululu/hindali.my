@@ -1,227 +1,541 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" id="html-root">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hind Ali | Travel, Quran, and Food in Malaysia</title>
+  <title>Hind Ali | Travel, Quran &amp; Food in Malaysia</title>
   <meta name="description" content="Hind Ali offers three personal services in Malaysia: private Arabic-friendly travel, one-to-one Quran tutoring, and homemade Arab and Yemeni food for gatherings.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Cormorant Garamond', 'Georgia', 'serif'],
+            body:    ['Manrope', 'sans-serif'],
+            arabic:  ['Noto Naskh Arabic', 'serif'],
+          },
+          colors: {
+            sand:   { DEFAULT: '#f5efe6', deep: '#e8ddd0' },
+            ink:    { DEFAULT: '#1a1612', soft: '#3d3530' },
+            gold:   { DEFAULT: '#b5843a', light: '#d4a85a', pale: '#f0ddb8' },
+            sage:   { DEFAULT: '#5c7a5e' },
+          },
+          backgroundImage: {
+            'grain': "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E\")",
+          }
+        }
+      }
+    }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&family=Noto+Naskh+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-  <script defer src="site.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Manrope:wght@400;500;600;700;800&family=Noto+Naskh+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* RTL helper */
+    html[dir="rtl"] { font-family: 'Noto Naskh Arabic', serif; }
+    html[dir="rtl"] .ltr-only { display: none; }
+    html[dir="ltr"]  .rtl-only { display: none; }
+    /* Grain overlay */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; pointer-events: none; z-index: 999;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      opacity: .4;
+    }
+    /* Smooth underline on nav links */
+    .nav-link { position: relative; }
+    .nav-link::after {
+      content: ''; position: absolute; bottom: -2px; left: 0; right: 0;
+      height: 1px; background: #b5843a; transform: scaleX(0); transition: transform .25s ease;
+    }
+    html[dir="rtl"] .nav-link::after { left: auto; }
+    .nav-link:hover::after, .nav-link[aria-current="page"]::after { transform: scaleX(1); }
+    /* Fade-up on scroll */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    /* Arabic font for ar content */
+    html[lang="ar"] body { font-family: 'Noto Naskh Arabic', serif; letter-spacing: 0; }
+    html[lang="ar"] h1,html[lang="ar"] h2,html[lang="ar"] h3 { font-family: 'Noto Naskh Arabic', serif; font-weight: 700; }
+  </style>
 </head>
-<body data-page="home" class="theme-home">
-  <a class="skip-link" href="#main" data-i18n="skipLink">Skip to content</a>
 
-  <header class="site-header">
-    <div class="site-wrap">
-      <div class="site-header-shell">
-        <a class="brand" href="./">
-          <span class="brand-mark">HA</span>
-          <span class="brand-copy">
-            <span class="brand-title" data-i18n="brandTitle">Hind Ali</span>
-            <span class="brand-subtitle" data-i18n="brandSubtitle">Travel · Quran · Food</span>
+<body class="bg-sand text-ink font-body antialiased">
+
+  <!-- Skip link -->
+  <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-gold focus:text-white focus:px-4 focus:py-2 focus:rounded" data-i18n="skipLink">Skip to content</a>
+
+  <!-- ═══════════════════════════════ HEADER ═══════════════════════════════ -->
+  <header class="sticky top-0 z-40 bg-sand/95 backdrop-blur border-b border-sand-deep/60">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8">
+      <div class="flex items-center justify-between h-16 gap-4">
+
+        <!-- Brand -->
+        <a href="#" class="flex items-center gap-3 shrink-0">
+          <span class="w-9 h-9 rounded-full bg-ink text-sand flex items-center justify-center font-display font-bold text-sm tracking-wider">HA</span>
+          <span class="hidden sm:flex flex-col leading-none">
+            <span class="font-display text-lg font-semibold text-ink" data-i18n="brandTitle">Hind Ali</span>
+            <span class="text-xs text-ink/50 tracking-widest uppercase font-body" data-i18n="brandSubtitle">Travel · Quran · Food</span>
           </span>
         </a>
 
-        <button class="menu-toggle" type="button" aria-expanded="false" data-nav-toggle data-i18n="menuToggle">Menu</button>
+        <!-- Desktop nav -->
+        <nav class="hidden md:flex items-center gap-7 font-body text-sm font-medium text-ink/70" aria-label="Primary">
+          <a href="#" class="nav-link hover:text-ink transition-colors" aria-current="page" data-i18n="navHome">Home</a>
+          <a href="#services" class="nav-link hover:text-ink transition-colors" data-i18n="navTravel">Travel</a>
+          <a href="#services" class="nav-link hover:text-ink transition-colors" data-i18n="navQuran">Quran</a>
+          <a href="#services" class="nav-link hover:text-ink transition-colors" data-i18n="navFood">Food</a>
+        </nav>
 
-        <div class="site-nav-panel" data-nav-panel>
-          <nav class="site-nav" aria-label="Primary">
-            <a href="./" aria-current="page" data-i18n="navHome">Home</a>
-            <a href="travel/" data-i18n="navTravel">Travel</a>
-            <a href="quran/" data-i18n="navQuran">Quran</a>
-            <a href="food/" data-i18n="navFood">Food</a>
-          </nav>
-
-          <div class="header-actions">
-            <div class="lang-switch" aria-label="Language switcher">
-              <button class="lang-btn active" type="button" data-lang="en" aria-pressed="true">EN</button>
-              <button class="lang-btn" type="button" data-lang="bm" aria-pressed="false">BM</button>
-              <button class="lang-btn" type="button" data-lang="ar" aria-pressed="false">AR</button>
-            </div>
-            <a class="button button-primary" href="https://wa.me/601153050524" data-message-key="general">
-              <span data-i18n="navWhatsapp">WhatsApp</span>
-            </a>
+        <!-- Actions -->
+        <div class="flex items-center gap-3">
+          <!-- Lang switcher -->
+          <div class="flex items-center rounded-full border border-sand-deep overflow-hidden text-xs font-semibold" aria-label="Language switcher">
+            <button class="lang-btn px-3 py-1.5 bg-ink text-sand transition-colors" type="button" data-lang="en" aria-pressed="true">EN</button>
+            <button class="lang-btn px-3 py-1.5 hover:bg-sand-deep transition-colors" type="button" data-lang="bm" aria-pressed="false">BM</button>
+            <button class="lang-btn px-3 py-1.5 hover:bg-sand-deep transition-colors" type="button" data-lang="ar" aria-pressed="false">AR</button>
           </div>
+          <!-- WA -->
+          <a href="https://wa.me/601153050524" target="_blank" rel="noreferrer"
+             class="hidden sm:inline-flex items-center gap-2 bg-ink text-sand text-xs font-semibold px-4 py-2 rounded-full hover:bg-ink/80 transition-colors"
+             data-i18n="navWhatsapp">WhatsApp</a>
+          <!-- Mobile menu -->
+          <button id="menu-toggle" class="md:hidden w-9 h-9 flex flex-col justify-center items-center gap-1.5" aria-expanded="false">
+            <span class="block w-5 h-px bg-ink transition-all duration-300" id="bar1"></span>
+            <span class="block w-5 h-px bg-ink transition-all duration-300" id="bar2"></span>
+            <span class="block w-3 h-px bg-ink transition-all duration-300" id="bar3"></span>
+          </button>
         </div>
       </div>
     </div>
+
+    <!-- Mobile menu panel -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-sand-deep bg-sand/98 px-5 pb-5">
+      <nav class="flex flex-col gap-1 pt-4 text-sm font-medium" aria-label="Mobile primary">
+        <a href="#" class="py-2 border-b border-sand-deep/40 text-ink" data-i18n="navHome">Home</a>
+        <a href="#services" class="py-2 border-b border-sand-deep/40 text-ink/70" data-i18n="navTravel">Travel</a>
+        <a href="#services" class="py-2 border-b border-sand-deep/40 text-ink/70" data-i18n="navQuran">Quran</a>
+        <a href="#services" class="py-2 border-b border-sand-deep/40 text-ink/70" data-i18n="navFood">Food</a>
+      </nav>
+      <a href="https://wa.me/601153050524" target="_blank" rel="noreferrer"
+         class="mt-4 inline-flex items-center gap-2 bg-ink text-sand text-xs font-semibold px-5 py-3 rounded-full"
+         data-i18n="navWhatsapp">WhatsApp</a>
+    </div>
   </header>
 
-  <main id="main" class="main-content">
+  <!-- ═══════════════════════════════ MAIN ═══════════════════════════════ -->
+  <main id="main">
 
-    <!-- ── HERO ──────────────────────────────────────────── -->
-    <section class="hero">
-      <div class="site-wrap">
-        <div class="section-shell hero-shell">
-          <div class="hero-grid">
+    <!-- ── HERO ── -->
+    <section class="relative overflow-hidden pt-20 pb-24 sm:pt-28 sm:pb-32">
+      <!-- Background decorative arc -->
+      <div class="absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full bg-gold/10 blur-3xl pointer-events-none"></div>
+      <div class="absolute bottom-0 left-0 w-64 h-64 rounded-full bg-sage/10 blur-2xl pointer-events-none"></div>
 
-            <!-- Left: headline + CTAs + stats -->
-            <div>
-              <div class="eyebrow" data-i18n="heroEyebrow">Based in Malaysia</div>
-              <h1 class="hero-title" data-i18n-html="heroTitle">Three services. One person. <span class="accent">Hind Ali.</span></h1>
-              <p class="hero-copy" data-i18n="heroCopy">Private travel guiding for Arabic-speaking visitors, one-to-one Quran tutoring with a native Yemeni teacher, and homemade Arab food for gatherings and gifting — all reached through a single WhatsApp conversation.</p>
-
-              <div class="hero-actions">
-                <a class="button button-primary" href="https://wa.me/601153050524" data-message-key="general">
-                  <span data-i18n="heroPrimary">Send a message</span>
-                </a>
-                <a class="button button-secondary" href="#services">
-                  <span data-i18n="heroSecondary">See the services</span>
-                </a>
-              </div>
-
-         
-
-              <div class="stat-row">
-                <div class="stat-card">
-                  <span class="stat-value" data-i18n="heroStat1Value">Arabic</span>
-                  <span class="stat-label" data-i18n="heroStat1Label">native speaker, born in Yemen</span>
-                </div>
-                <div class="stat-card">
-                  <span class="stat-value" data-i18n="heroStat2Value">KL-based</span>
-                  <span class="stat-label" data-i18n="heroStat2Label">serving families across Malaysia</span>
-                </div>
-                <div class="stat-card">
-                  <span class="stat-value" data-i18n="heroStat3Value">Direct</span>
-                  <span class="stat-label" data-i18n="heroStat3Label">no middlemen, no booking apps</span>
-                </div>
-              </div>
-            </div>
-
+      <div class="max-w-6xl mx-auto px-5 sm:px-8 relative">
+        <div class="max-w-3xl">
+          <div class="reveal inline-flex items-center gap-2 mb-5 text-xs font-semibold uppercase tracking-[.15em] text-gold border border-gold/30 rounded-full px-4 py-1.5 bg-gold/5">
+            <span class="w-1.5 h-1.5 rounded-full bg-gold animate-pulse"></span>
+            <span data-i18n="heroEyebrow">Based in Malaysia</span>
           </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- ── SERVICES ───────────────────────────────────────── -->
-    <section id="services" class="section">
-      <div class="site-wrap">
-        <div class="section-shell">
-          <div class="section-body">
-            <div class="section-heading">
-              <div class="eyebrow" data-i18n="servicesEyebrow">The Three Services</div>
-              <h2 class="section-title" data-i18n="servicesTitle">Pick the one that fits your need right now.</h2>
-              <p class="section-copy" data-i18n="servicesCopy">Each service has its own page with full details, pricing context, and a direct WhatsApp button. Start there, or message Hind directly if you are not sure which fits.</p>
+          <h1 class="reveal font-display text-5xl sm:text-6xl lg:text-7xl font-bold text-ink leading-[1.05] mb-6" style="animation-delay:.1s">
+            <span data-i18n="heroTitle">Three services.<br>One person.</span>
+            <span class="block italic text-gold" data-i18n="heroAccent">Hind Ali.</span>
+          </h1>
+
+          <p class="reveal text-base sm:text-lg text-ink/60 leading-relaxed max-w-xl mb-10" style="animation-delay:.2s" data-i18n="heroCopy">
+            Private travel guiding for Arabic-speaking visitors, one-to-one Quran tutoring with a native Yemeni teacher, and homemade Arab food for gatherings — all reached through a single WhatsApp conversation.
+          </p>
+
+          <div class="reveal flex flex-wrap gap-3 mb-14" style="animation-delay:.3s">
+            <a href="https://wa.me/601153050524" target="_blank" rel="noreferrer"
+               class="inline-flex items-center gap-2.5 bg-ink text-sand font-semibold text-sm px-6 py-3 rounded-full hover:bg-ink/80 transition-colors"
+               data-i18n="heroPrimary">Send a message</a>
+            <a href="#services"
+               class="inline-flex items-center gap-2.5 border border-ink/20 text-ink font-semibold text-sm px-6 py-3 rounded-full hover:bg-sand-deep transition-colors"
+               data-i18n="heroSecondary">See the services</a>
+          </div>
+
+          <!-- Stat row -->
+          <div class="reveal grid grid-cols-1 sm:grid-cols-3 gap-px bg-sand-deep rounded-2xl overflow-hidden border border-sand-deep" style="animation-delay:.4s">
+            <div class="bg-sand px-6 py-5">
+              <div class="font-display text-2xl font-semibold text-gold mb-1" data-i18n="heroStat1Value">Arabic</div>
+              <div class="text-xs text-ink/50 leading-snug" data-i18n="heroStat1Label">native speaker, born in Yemen</div>
             </div>
-
-            <div class="service-grid">
-              <article class="service-card">
-                <span class="service-label" data-i18n="cardTravelLabel">Private Travel</span>
-                <h3 class="service-card-title" data-i18n="cardTravelTitle">Hind Travel</h3>
-                <p class="card-copy" data-i18n="cardTravelCopy">Arabic-speaking private guide for families and solo visitors exploring Malaysia. Custom routes, halal food stops, and pacing that actually suits your group.</p>
-                <div class="service-card-actions">
-                  
-                  <a class="button button-live" href="https://hindtravel.my" target="_blank" rel="noreferrer">hindtravel.my ↗</a>
-                </div>
-              </article>
-
-              <article class="service-card">
-                <span class="service-label" data-i18n="cardQuranLabel">Quran Classes</span>
-                <h3 class="service-card-title" data-i18n="cardQuranTitle">Hind Qalam</h3>
-                <p class="card-copy" data-i18n="cardQuranCopy">One-to-one Quran lessons with a native Arabic teacher from Yemen. Structured sessions for children, teenagers, and adults at any level.</p>
-                <div class="service-card-actions">
-                
-                  <a class="button button-live" href="https://hindqalam.my" target="_blank" rel="noreferrer">hindqalam.my ↗</a>
-                </div>
-              </article>
-
-              <article class="service-card">
-                <span class="service-label" data-i18n="cardFoodLabel">Homemade Food</span>
-                <h3 class="service-card-title" data-i18n="cardFoodTitle">Hind Food</h3>
-                <p class="card-copy" data-i18n="cardFoodCopy">Arab and Yemeni home cooking made fresh for your event, family gathering, or gifting. Orders for up to 50 pax — all made by Hind herself.</p>
-                <div class="service-card-actions">
-                 
-                  <a class="button button-live" href="https://eatmyfood.my" target="_blank" rel="noreferrer">eatmyfood.my ↗</a>
-                </div>
-              </article>
+            <div class="bg-sand px-6 py-5">
+              <div class="font-display text-2xl font-semibold text-gold mb-1" data-i18n="heroStat2Value">KL-based</div>
+              <div class="text-xs text-ink/50 leading-snug" data-i18n="heroStat2Label">serving families across Malaysia</div>
+            </div>
+            <div class="bg-sand px-6 py-5">
+              <div class="font-display text-2xl font-semibold text-gold mb-1" data-i18n="heroStat3Value">Direct</div>
+              <div class="text-xs text-ink/50 leading-snug" data-i18n="heroStat3Label">no middlemen, no booking apps</div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
- 
+    <!-- ── SERVICES ── -->
+    <section id="services" class="py-20 sm:py-28 bg-sand-deep/40">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8">
 
-    <!-- ── HOW TO BOOK ────────────────────────────────────── -->
-    <section class="section">
-      <div class="site-wrap">
-        <div class="section-shell paper">
-          <div class="section-body">
-            <div class="section-heading max-compact">
-              <div class="eyebrow" data-i18n="processEyebrow">How to Book</div>
-              <h2 class="section-title" data-i18n="processTitle">Three steps, then it is sorted.</h2>
-              <p class="section-copy" data-i18n="processCopy">No forms, no payment portals, no waiting. A WhatsApp conversation that starts with the right context and moves quickly from there.</p>
+        <div class="reveal max-w-xl mb-12">
+          <div class="text-xs font-semibold uppercase tracking-[.15em] text-gold mb-3" data-i18n="servicesEyebrow">The Three Services</div>
+          <h2 class="font-display text-4xl sm:text-5xl font-bold text-ink mb-4" data-i18n="servicesTitle">Pick the one that fits your need right now.</h2>
+          <p class="text-ink/55 leading-relaxed" data-i18n="servicesCopy">Each service has its own page with full details and a direct WhatsApp button. Message Hind directly if you're not sure which fits.</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+          <!-- Travel -->
+          <article class="reveal group flex flex-col bg-sand border border-sand-deep rounded-2xl overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300" style="animation-delay:.1s">
+            <div class="h-1.5 bg-gold"></div>
+            <div class="p-8 flex flex-col flex-1">
+              <span class="text-xs font-bold uppercase tracking-[.15em] text-gold mb-4" data-i18n="cardTravelLabel">Private Travel</span>
+              <h3 class="font-display text-3xl font-semibold text-ink mb-3" data-i18n="cardTravelTitle">Hind Travel</h3>
+              <p class="text-sm text-ink/55 leading-relaxed flex-1 mb-8" data-i18n="cardTravelCopy">Arabic-speaking private guide for families and solo visitors exploring Malaysia. Custom routes, halal food stops, and pacing that actually suits your group.</p>
+              <a href="https://hindtravel.my" target="_blank" rel="noreferrer"
+                 class="self-start inline-flex items-center gap-2 text-xs font-bold border border-ink/20 rounded-full px-4 py-2 hover:bg-ink hover:text-sand transition-colors">
+                hindtravel.my ↗
+              </a>
             </div>
+          </article>
 
-            <div class="steps-grid">
-              <article class="step-card">
-                <div class="step-number">01</div>
-                <h3 class="card-title" data-i18n="process1Title">Choose your service</h3>
-                <p class="card-copy" data-i18n="process1Copy">Read the Travel, Quran, or Food page. If you are between two or not sure, just message Hind and she will point you in the right direction.</p>
-              </article>
-
-              <article class="step-card">
-                <div class="step-number">02</div>
-                <h3 class="card-title" data-i18n="process2Title">Tap the WhatsApp button</h3>
-                <p class="card-copy" data-i18n="process2Copy">Each service page opens a pre-written message so Hind knows exactly what you need from the first word — no back-and-forth explaining.</p>
-              </article>
-
-              <article class="step-card">
-                <div class="step-number">03</div>
-                <h3 class="card-title" data-i18n="process3Title">Confirm and go</h3>
-                <p class="card-copy" data-i18n="process3Copy">Hind replies personally, confirms dates and availability, and handles everything directly. Scheduling and payment are all done with her — no third parties.</p>
-              </article>
+          <!-- Quran -->
+          <article class="reveal group flex flex-col bg-sand border border-sand-deep rounded-2xl overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300" style="animation-delay:.2s">
+            <div class="h-1.5 bg-sage"></div>
+            <div class="p-8 flex flex-col flex-1">
+              <span class="text-xs font-bold uppercase tracking-[.15em] text-sage mb-4" data-i18n="cardQuranLabel">Quran Classes</span>
+              <h3 class="font-display text-3xl font-semibold text-ink mb-3" data-i18n="cardQuranTitle">Hind Qalam</h3>
+              <p class="text-sm text-ink/55 leading-relaxed flex-1 mb-8" data-i18n="cardQuranCopy">One-to-one Quran lessons with a native Arabic teacher from Yemen. Structured sessions for children, teenagers, and adults at any level.</p>
+              <a href="https://hindqalam.my" target="_blank" rel="noreferrer"
+                 class="self-start inline-flex items-center gap-2 text-xs font-bold border border-ink/20 rounded-full px-4 py-2 hover:bg-ink hover:text-sand transition-colors">
+                hindqalam.my ↗
+              </a>
             </div>
-          </div>
+          </article>
+
+          <!-- Food -->
+          <article class="reveal group flex flex-col bg-sand border border-sand-deep rounded-2xl overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300 sm:col-span-2 lg:col-span-1" style="animation-delay:.3s">
+            <div class="h-1.5 bg-gold-light"></div>
+            <div class="p-8 flex flex-col flex-1">
+              <span class="text-xs font-bold uppercase tracking-[.15em] text-gold-light mb-4" data-i18n="cardFoodLabel">Homemade Food</span>
+              <h3 class="font-display text-3xl font-semibold text-ink mb-3" data-i18n="cardFoodTitle">Hind Food</h3>
+              <p class="text-sm text-ink/55 leading-relaxed flex-1 mb-8" data-i18n="cardFoodCopy">Arab and Yemeni home cooking made fresh for your event, family gathering, or gifting. Orders for up to 50 pax — all made by Hind herself.</p>
+              <a href="https://eatmyfood.my" target="_blank" rel="noreferrer"
+                 class="self-start inline-flex items-center gap-2 text-xs font-bold border border-ink/20 rounded-full px-4 py-2 hover:bg-ink hover:text-sand transition-colors">
+                eatmyfood.my ↗
+              </a>
+            </div>
+          </article>
+
         </div>
       </div>
     </section>
 
-  
+    <!-- ── HOW TO BOOK ── -->
+    <section class="py-20 sm:py-28">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8">
+
+        <div class="reveal max-w-xl mb-12">
+          <div class="text-xs font-semibold uppercase tracking-[.15em] text-gold mb-3" data-i18n="processEyebrow">How to Book</div>
+          <h2 class="font-display text-4xl sm:text-5xl font-bold text-ink mb-4" data-i18n="processTitle">Three steps, then it is sorted.</h2>
+          <p class="text-ink/55 leading-relaxed" data-i18n="processCopy">No forms, no payment portals, no waiting. A WhatsApp conversation that moves quickly from the very first message.</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+
+          <article class="reveal relative p-8 bg-sand border border-sand-deep rounded-2xl" style="animation-delay:.1s">
+            <span class="absolute top-5 right-6 font-display text-6xl font-bold text-sand-deep select-none pointer-events-none leading-none">01</span>
+            <h3 class="font-display text-2xl font-semibold text-ink mb-3 relative" data-i18n="process1Title">Choose your service</h3>
+            <p class="text-sm text-ink/55 leading-relaxed relative" data-i18n="process1Copy">Browse the Travel, Quran, or Food section. If you're unsure, message Hind and she will point you in the right direction.</p>
+          </article>
+
+          <article class="reveal relative p-8 bg-sand border border-sand-deep rounded-2xl" style="animation-delay:.2s">
+            <span class="absolute top-5 right-6 font-display text-6xl font-bold text-sand-deep select-none pointer-events-none leading-none">02</span>
+            <h3 class="font-display text-2xl font-semibold text-ink mb-3 relative" data-i18n="process2Title">Tap the WhatsApp button</h3>
+            <p class="text-sm text-ink/55 leading-relaxed relative" data-i18n="process2Copy">Each service opens a pre-written message so Hind knows exactly what you need from the first word — no back-and-forth explaining.</p>
+          </article>
+
+          <article class="reveal relative p-8 bg-ink text-sand rounded-2xl" style="animation-delay:.3s">
+            <span class="absolute top-5 right-6 font-display text-6xl font-bold text-white/10 select-none pointer-events-none leading-none">03</span>
+            <h3 class="font-display text-2xl font-semibold mb-3 relative" data-i18n="process3Title">Confirm and go</h3>
+            <p class="text-sm text-sand/60 leading-relaxed relative" data-i18n="process3Copy">Hind replies personally, confirms dates and availability, and handles everything directly. No third parties.</p>
+            <a href="https://wa.me/601153050524" target="_blank" rel="noreferrer"
+               class="mt-6 inline-flex items-center gap-2 bg-gold text-white text-xs font-bold px-5 py-2.5 rounded-full hover:bg-gold-light transition-colors relative"
+               data-i18n="navWhatsapp">WhatsApp</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
   </main>
 
-  <footer class="site-footer">
-    <div class="site-wrap">
-      <div class="footer-shell">
-        <div class="footer-top">
-          <div class="brand">
-            <span class="brand-mark">HA</span>
-            <span class="brand-copy">
-              <span class="brand-title" data-i18n="brandTitle">Hind Ali</span>
-              <span class="brand-subtitle" data-i18n="brandSubtitle">Travel · Quran · Food</span>
-            </span>
+  <!-- ═══════════════════════════════ FOOTER ═══════════════════════════════ -->
+  <footer class="bg-ink text-sand py-14">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8">
+      <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-8 mb-10">
+        <div class="flex items-center gap-3">
+          <span class="w-10 h-10 rounded-full bg-sand text-ink flex items-center justify-center font-display font-bold text-sm">HA</span>
+          <div>
+            <div class="font-display text-lg font-semibold" data-i18n="brandTitle">Hind Ali</div>
+            <div class="text-xs text-sand/40 tracking-widest uppercase" data-i18n="brandSubtitle">Travel · Quran · Food</div>
           </div>
-          <a class="button button-secondary" href="https://wa.me/601153050524" data-message-key="general">
-            <span data-i18n="navWhatsapp">WhatsApp</span>
-          </a>
         </div>
+        <a href="https://wa.me/601153050524" target="_blank" rel="noreferrer"
+           class="self-start inline-flex items-center gap-2 border border-sand/20 text-sand text-xs font-semibold px-5 py-2.5 rounded-full hover:bg-sand hover:text-ink transition-colors"
+           data-i18n="navWhatsapp">WhatsApp</a>
+      </div>
 
-        <h3 class="card-title" style="margin-top:1.2rem;" data-i18n="footerTitle">Private services in Malaysia — travel, Quran, and home cooking.</h3>
-        <p class="footer-copy" data-i18n="footerCopy">Everything runs through Hind directly. No agencies, no platforms, no automated replies. Each enquiry is handled personally.</p>
+      <p class="font-display text-xl sm:text-2xl font-medium text-sand/80 max-w-lg mb-3 leading-snug" data-i18n="footerTitle">Private services in Malaysia — travel, Quran, and home cooking.</p>
+      <p class="text-sm text-sand/40 max-w-md leading-relaxed mb-10" data-i18n="footerCopy">Everything runs through Hind directly. No agencies, no platforms, no automated replies.</p>
 
-        <div class="footer-meta">
-          <nav aria-label="Footer links">
-            <div class="footer-links">
-              <a href="travel/" data-i18n="navTravel">Travel</a>
-              <a href="quran/" data-i18n="navQuran">Quran</a>
-              <a href="food/" data-i18n="navFood">Food</a>
-              <a href="https://hindtravel.my" target="_blank" rel="noreferrer">hindtravel.my ↗</a>
-              <a href="https://hindqalam.my" target="_blank" rel="noreferrer">hindqalam.my ↗</a>
-              <a href="https://eatmyfood.my" target="_blank" rel="noreferrer">eatmyfood.my ↗</a>
-            </div>
-          </nav>
-          <span>© 2026 Hind Ali. Kuala Lumpur, Malaysia.</span>
-        </div>
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6 pt-8 border-t border-sand/10 text-xs text-sand/35">
+        <nav class="flex flex-wrap gap-x-5 gap-y-2">
+          <a href="https://hindtravel.my" target="_blank" rel="noreferrer" class="hover:text-sand/70 transition-colors">hindtravel.my ↗</a>
+          <a href="https://hindqalam.my" target="_blank" rel="noreferrer" class="hover:text-sand/70 transition-colors">hindqalam.my ↗</a>
+          <a href="https://eatmyfood.my" target="_blank" rel="noreferrer" class="hover:text-sand/70 transition-colors">eatmyfood.my ↗</a>
+        </nav>
+        <span>© 2026 Hind Ali. Kuala Lumpur, Malaysia.</span>
       </div>
     </div>
   </footer>
 
-  <a class="floating-whatsapp" href="https://wa.me/601153050524" data-message-key="general">
-    <span class="floating-dot"></span>
+  <!-- Floating WhatsApp -->
+  <a href="https://wa.me/601153050524" target="_blank" rel="noreferrer"
+     class="fixed bottom-6 right-6 z-50 flex items-center gap-2.5 bg-ink text-sand text-xs font-semibold pl-4 pr-5 py-3 rounded-full shadow-xl hover:bg-ink/90 transition-all hover:-translate-y-0.5 group">
+    <span class="relative flex h-2 w-2">
+      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold opacity-75"></span>
+      <span class="relative inline-flex rounded-full h-2 w-2 bg-gold"></span>
+    </span>
     <span data-i18n="floatingCta">Message Hind Ali</span>
   </a>
+
+  <!-- ═══════════════════════════════ SCRIPTS ═══════════════════════════════ -->
+  <script>
+  // ─── Translation strings ────────────────────────────────────────────────
+  const i18n = {
+    en: {
+      skipLink:       "Skip to content",
+      brandTitle:     "Hind Ali",
+      brandSubtitle:  "Travel · Quran · Food",
+      navHome:        "Home",
+      navTravel:      "Travel",
+      navQuran:       "Quran",
+      navFood:        "Food",
+      navWhatsapp:    "WhatsApp",
+      heroEyebrow:    "Based in Malaysia",
+      heroTitle:      "Three services.\nOne person.",
+      heroAccent:     "Hind Ali.",
+      heroCopy:       "Private travel guiding for Arabic-speaking visitors, one-to-one Quran tutoring with a native Yemeni teacher, and homemade Arab food for gatherings — all reached through a single WhatsApp conversation.",
+      heroPrimary:    "Send a message",
+      heroSecondary:  "See the services",
+      heroStat1Value: "Arabic",
+      heroStat1Label: "native speaker, born in Yemen",
+      heroStat2Value: "KL-based",
+      heroStat2Label: "serving families across Malaysia",
+      heroStat3Value: "Direct",
+      heroStat3Label: "no middlemen, no booking apps",
+      servicesEyebrow:"The Three Services",
+      servicesTitle:  "Pick the one that fits your need right now.",
+      servicesCopy:   "Each service has its own page with full details and a direct WhatsApp button. Message Hind directly if you're not sure which fits.",
+      cardTravelLabel:"Private Travel",
+      cardTravelTitle:"Hind Travel",
+      cardTravelCopy: "Arabic-speaking private guide for families and solo visitors exploring Malaysia. Custom routes, halal food stops, and pacing that actually suits your group.",
+      cardQuranLabel: "Quran Classes",
+      cardQuranTitle: "Hind Qalam",
+      cardQuranCopy:  "One-to-one Quran lessons with a native Arabic teacher from Yemen. Structured sessions for children, teenagers, and adults at any level.",
+      cardFoodLabel:  "Homemade Food",
+      cardFoodTitle:  "Hind Food",
+      cardFoodCopy:   "Arab and Yemeni home cooking made fresh for your event, family gathering, or gifting. Orders for up to 50 pax — all made by Hind herself.",
+      processEyebrow: "How to Book",
+      processTitle:   "Three steps, then it is sorted.",
+      processCopy:    "No forms, no payment portals, no waiting. A WhatsApp conversation that moves quickly from the very first message.",
+      process1Title:  "Choose your service",
+      process1Copy:   "Browse the Travel, Quran, or Food section. If you're unsure, message Hind and she will point you in the right direction.",
+      process2Title:  "Tap the WhatsApp button",
+      process2Copy:   "Each service opens a pre-written message so Hind knows exactly what you need from the first word — no back-and-forth explaining.",
+      process3Title:  "Confirm and go",
+      process3Copy:   "Hind replies personally, confirms dates and availability, and handles everything directly. No third parties.",
+      footerTitle:    "Private services in Malaysia — travel, Quran, and home cooking.",
+      footerCopy:     "Everything runs through Hind directly. No agencies, no platforms, no automated replies.",
+      floatingCta:    "Message Hind Ali",
+    },
+
+    bm: {
+      skipLink:       "Langkau ke kandungan",
+      brandTitle:     "Hind Ali",
+      brandSubtitle:  "Pelancongan · Quran · Makanan",
+      navHome:        "Utama",
+      navTravel:      "Pelancongan",
+      navQuran:       "Quran",
+      navFood:        "Makanan",
+      navWhatsapp:    "WhatsApp",
+      heroEyebrow:    "Berpangkalan di Malaysia",
+      heroTitle:      "Tiga perkhidmatan.\nSatu individu.",
+      heroAccent:     "Hind Ali.",
+      heroCopy:       "Pemandu peribadi untuk pelawat berbahasa Arab, kelas Quran satu-satu bersama guru asli Yaman, dan masakan Arab tulen untuk majlis anda — semua melalui satu perbualan WhatsApp.",
+      heroPrimary:    "Hantar mesej",
+      heroSecondary:  "Lihat perkhidmatan",
+      heroStat1Value: "Arab",
+      heroStat1Label: "penutur asli, berasal dari Yaman",
+      heroStat2Value: "KL",
+      heroStat2Label: "berkhidmat kepada keluarga seluruh Malaysia",
+      heroStat3Value: "Terus",
+      heroStat3Label: "tiada orang tengah, tiada aplikasi",
+      servicesEyebrow:"Tiga Perkhidmatan",
+      servicesTitle:  "Pilih yang paling sesuai untuk keperluan anda sekarang.",
+      servicesCopy:   "Setiap perkhidmatan mempunyai halamannya sendiri. Hubungi Hind terus jika anda tidak pasti.",
+      cardTravelLabel:"Pelancongan Peribadi",
+      cardTravelTitle:"Hind Travel",
+      cardTravelCopy: "Pemandu peribadi berbahasa Arab untuk keluarga dan pelawat solo di Malaysia. Laluan khas, perhentian makanan halal, dan kadar perjalanan yang sesuai.",
+      cardQuranLabel: "Kelas Quran",
+      cardQuranTitle: "Hind Qalam",
+      cardQuranCopy:  "Pelajaran Quran satu-satu bersama guru Arab asli dari Yaman. Sesi berstruktur untuk kanak-kanak, remaja, dan dewasa.",
+      cardFoodLabel:  "Masakan Sendiri",
+      cardFoodTitle:  "Hind Food",
+      cardFoodCopy:   "Masakan Arab dan Yaman buatan sendiri untuk majlis, keluarga, atau hadiah. Tempahan sehingga 50 pax — semua dibuat oleh Hind sendiri.",
+      processEyebrow: "Cara Tempah",
+      processTitle:   "Tiga langkah, selesai.",
+      processCopy:    "Tiada borang, tiada portal pembayaran. Perbualan WhatsApp yang cepat bermula dari mesej pertama.",
+      process1Title:  "Pilih perkhidmatan",
+      process1Copy:   "Semak bahagian Pelancongan, Quran, atau Makanan. Jika ragu, mesej Hind dan dia akan bantu.",
+      process2Title:  "Tekan butang WhatsApp",
+      process2Copy:   "Setiap perkhidmatan membuka mesej bertulis supaya Hind tahu keperluan anda dari awal.",
+      process3Title:  "Sahkan dan teruskan",
+      process3Copy:   "Hind membalas secara peribadi, mengesahkan tarikh dan ketersediaan, dan menguruskan semuanya terus.",
+      footerTitle:    "Perkhidmatan peribadi di Malaysia — pelancongan, Quran, dan masakan.",
+      footerCopy:     "Semua urusan melalui Hind secara terus. Tiada agensi, tiada platform, tiada balasan automatik.",
+      floatingCta:    "Mesej Hind Ali",
+    },
+
+    ar: {
+      skipLink:       "تخطى إلى المحتوى",
+      brandTitle:     "هند علي",
+      brandSubtitle:  "السياحة · القرآن · الطعام",
+      navHome:        "الرئيسية",
+      navTravel:      "السياحة",
+      navQuran:       "القرآن",
+      navFood:        "الطعام",
+      navWhatsapp:    "واتساب",
+      heroEyebrow:    "مقيمة في ماليزيا",
+      heroTitle:      "ثلاث خدمات.\nشخص واحد.",
+      heroAccent:     "هند علي.",
+      heroCopy:       "مرشدة سياحية خاصة للزوار الناطقين بالعربية، وتحفيظ القرآن الكريم مع معلمة يمنية متخصصة، والطعام العربي والبيتي لمناسباتكم — كل ذلك من خلال محادثة واتساب واحدة.",
+      heroPrimary:    "أرسل رسالة",
+      heroSecondary:  "تصفح الخدمات",
+      heroStat1Value: "عربية",
+      heroStat1Label: "متحدثة أصلية، من اليمن",
+      heroStat2Value: "كوالالمبور",
+      heroStat2Label: "تخدم العائلات في ماليزيا",
+      heroStat3Value: "مباشر",
+      heroStat3Label: "بدون وسطاء أو تطبيقات",
+      servicesEyebrow:"الخدمات الثلاث",
+      servicesTitle:  "اختر ما يناسب احتياجك الآن.",
+      servicesCopy:   "لكل خدمة صفحتها الخاصة مع تفاصيل كاملة. تواصل مع هند مباشرةً إن لم تكن متأكداً.",
+      cardTravelLabel:"سياحة خاصة",
+      cardTravelTitle:"هند تريفل",
+      cardTravelCopy: "مرشدة خاصة ناطقة بالعربية للعائلات والأفراد في ماليزيا. مسارات مخصصة، ومطاعم حلال، وتنظيم يناسب مجموعتك.",
+      cardQuranLabel: "تحفيظ القرآن",
+      cardQuranTitle: "هند قلم",
+      cardQuranCopy:  "دروس قرآن فردية مع معلمة عربية أصيلة من اليمن. جلسات منظمة للأطفال والمراهقين والكبار بجميع المستويات.",
+      cardFoodLabel:  "طعام بيتي",
+      cardFoodTitle:  "هند فود",
+      cardFoodCopy:   "أكلات عربية ويمنية بيتية طازجة لمناسباتكم وهداياكم. طلبات لحتى ٥٠ شخصاً — كلها من يدي هند.",
+      processEyebrow: "كيف تحجز",
+      processTitle:   "ثلاث خطوات وانتهى الأمر.",
+      processCopy:    "لا نماذج ولا بوابات دفع ولا انتظار. محادثة واتساب تبدأ بالمعلومات الصحيحة وتنتهي بسرعة.",
+      process1Title:  "اختر الخدمة",
+      process1Copy:   "اطلع على صفحة السياحة أو القرآن أو الطعام. إن لم تكن متأكداً، تواصل مع هند وستوجهك.",
+      process2Title:  "اضغط زر واتساب",
+      process2Copy:   "كل خدمة تفتح رسالة جاهزة حتى تعلم هند احتياجك من أول كلمة.",
+      process3Title:  "تأكيد والانطلاق",
+      process3Copy:   "هند ترد شخصياً، تؤكد المواعيد والتوافر، وتدير كل شيء مباشرة بدون أطراف أخرى.",
+      footerTitle:    "خدمات خاصة في ماليزيا — سياحة وقرآن وطعام.",
+      footerCopy:     "كل شيء عبر هند مباشرةً. لا وكالات ولا منصات ولا ردود آلية.",
+      floatingCta:    "تواصل مع هند علي",
+    }
+  };
+
+  // ─── Apply translations ──────────────────────────────────────────────────
+  function applyLang(lang) {
+    const t = i18n[lang];
+    const isAr = lang === 'ar';
+    const html = document.getElementById('html-root');
+
+    // Set dir + lang
+    html.setAttribute('lang', lang);
+    html.setAttribute('dir', isAr ? 'rtl' : 'ltr');
+
+    // Update all text nodes
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.dataset.i18n;
+      if (t[key] !== undefined) {
+        el.textContent = t[key];
+      }
+    });
+
+    // heroTitle is split across two elements (title + accent span)
+    // handled by separate data-i18n keys already
+
+    // RTL-aware hero title line breaks
+    const heroTitleEl = document.querySelector('[data-i18n="heroTitle"]');
+    if (heroTitleEl) {
+      heroTitleEl.innerHTML = t.heroTitle.replace('\n', '<br>');
+    }
+
+    // Update lang buttons
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      const active = btn.dataset.lang === lang;
+      btn.setAttribute('aria-pressed', active);
+      btn.classList.toggle('bg-ink', active);
+      btn.classList.toggle('text-sand', active);
+      btn.classList.toggle('hover:bg-sand-deep', !active);
+    });
+
+    // Persist
+    localStorage.setItem('ha-lang', lang);
+  }
+
+  // ─── Init ────────────────────────────────────────────────────────────────
+  document.addEventListener('DOMContentLoaded', () => {
+    const saved = localStorage.getItem('ha-lang') || 'en';
+    applyLang(saved);
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => applyLang(btn.dataset.lang));
+    });
+
+    // Mobile menu
+    const toggle = document.getElementById('menu-toggle');
+    const menu   = document.getElementById('mobile-menu');
+    const bar1   = document.getElementById('bar1');
+    const bar3   = document.getElementById('bar3');
+    toggle.addEventListener('click', () => {
+      const open = menu.classList.toggle('hidden') === false;
+      toggle.setAttribute('aria-expanded', open);
+      bar1.classList.toggle('rotate-45', open);
+      bar1.classList.toggle('translate-y-2', open);
+      bar3.classList.toggle('opacity-0', open);
+    });
+
+    // Close mobile menu on anchor clicks
+    menu.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        menu.classList.add('hidden');
+        toggle.setAttribute('aria-expanded', 'false');
+        bar1.classList.remove('rotate-45','translate-y-2');
+        bar3.classList.remove('opacity-0');
+      });
+    });
+
+    // Scroll reveal
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  });
+  </script>
 </body>
 </html>
