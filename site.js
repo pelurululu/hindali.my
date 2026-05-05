@@ -6,6 +6,10 @@
 /* ── 1. TRANSLATIONS ─────────────────────────────────────── */
 const TRANSLATIONS = {
   en: {
+     quoteKicker: "Private, not generic",
+quoteTitle: "One trusted name. Three meaningful offers.",
+quoteCopy: "Instead of feeling like three separate websites, the new experience presents Hind Ali as one premium personal brand with distinct pathways for travel, learning, and hospitality.",
+quoteSource: "Designed as the main destination for hindali.my",
     skipLink: "Skip to content",
     brandTitle: "Hind Ali",
     brandSubtitle: "Travel · Quran · Food",
