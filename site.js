@@ -146,6 +146,10 @@ const TRANSLATIONS = {
     footerPrimaryDomain: "Primary domain: hindali.my",
     footerCopyright: "© 2026 Hind Ali. Premium personal services in Malaysia.",
     floatingCta: "Message Hind Ali",
+
+    enquireTravel: "Enquire about Travel",
+    enquireQuran: "Enquire about Quran",
+    enquireFood: "Enquire about Food",
   },
 
   /* ── BAHASA MALAYSIA ──────────────────────────────────── */
@@ -279,6 +283,10 @@ const TRANSLATIONS = {
     footerPrimaryDomain: "Domain utama: hindali.my",
     footerCopyright: "© 2026 Hind Ali. Perkhidmatan peribadi premium di Malaysia.",
     floatingCta: "Mesej Hind Ali",
+
+    enquireTravel: "Tanya tentang Pelancongan",
+    enquireQuran: "Tanya tentang Quran",
+    enquireFood: "Tanya tentang Makanan",
   },
 
   /* ── ARABIC ───────────────────────────────────────────── */
@@ -412,6 +420,10 @@ const TRANSLATIONS = {
     footerPrimaryDomain: "النطاق الرئيسي: hindali.my",
     footerCopyright: "© 2026 هند علي. خدمات شخصية متميزة في ماليزيا.",
     floatingCta: "راسل هند علي",
+
+    enquireTravel: "استفسر عن السفر",
+    enquireQuran: "استفسر عن القرآن",
+    enquireFood: "استفسر عن الطعام",
   },
 };
 
