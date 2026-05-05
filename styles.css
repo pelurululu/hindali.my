@@ -172,7 +172,7 @@ select {
   /* This ensures the image behaves inside the circle */
   width: 80%;      /* Slightly smaller than 100% gives the logo "room to breathe" */
   height: 80%;
-  object-fit: contain; /* Ensures the logo isn't stretched or cropped */
+  object-fit: cover; /* Ensures the logo isn't stretched or cropped */
   display: block;
 }
 
