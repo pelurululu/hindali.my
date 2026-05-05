@@ -144,25 +144,38 @@ select {
 
 /* The Circular Frame */
 .brand-mark {
-  width: 3.5rem;   /* Slightly larger for better visibility */
-  height: 3.5rem;
+  /* Dimensions must be equal for a perfect circle */
+  width: 4rem; 
+  height: 4rem;
   flex: 0 0 auto;
-  border-radius: 50%; /* Force it to be a perfect circle */
-  overflow: hidden;   /* This crops the image into the circle */
+  
+  /* The Circle Logic */
+  border-radius: 50%;
+  overflow: hidden; /* Clips the image to the circle shape */
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, var(--service-accent), var(--gold-bright));
-  border: 2px solid rgba(255, 255, 255, 0.1); /* Subtle border for definition */
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  
+  /* Aesthetics */
+  background: linear-gradient(135deg, var(--gold-soft), var(--gold));
+  box-shadow: 0 8px 20px rgba(239, 181, 79, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* The Image Inside */
-.brand-mark img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* This makes the image fill the circle perfectly */
-  object-position: center; /* Ensures the logo stays centered */
+.brand-logo-img {
+  /* This ensures the image behaves inside the circle */
+  width: 80%;      /* Slightly smaller than 100% gives the logo "room to breathe" */
+  height: 80%;
+  object-fit: contain; /* Ensures the logo isn't stretched or cropped */
+  display: block;
+}
+
+/* Mobile adjustments */
+@media (max-width: 720px) {
+  .brand-mark {
+    width: 3.2rem;
+    height: 3.2rem;
+  }
 }
 
 /* Optional: Slight pulse effect when hovering over the brand */
