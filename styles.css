@@ -148,7 +148,7 @@ select {
   width: 4rem; 
   height: 4rem;
   flex: 0 0 auto;
-  
+    align-items: center;
   /* The Circle Logic */
   border-radius: 50%;
   overflow: hidden; /* Clips the image to the circle shape */
