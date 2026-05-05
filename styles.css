@@ -151,8 +151,8 @@ select {
 /* The Circular Frame */
 .brand-mark {
   /* Dimensions must be equal for a perfect circle */
-  width: 4rem; 
-  height: 4rem;
+  width: 4.5rem; 
+  height: 4.5rem;
   flex: 0 0 auto;
     align-items: center;
   /* The Circle Logic */
@@ -170,9 +170,9 @@ select {
 
 .brand-logo-img {
   /* This ensures the image behaves inside the circle */
-  width: 80%;      /* Slightly smaller than 100% gives the logo "room to breathe" */
-  height: 80%;
-  object-fit: cover; /* Ensures the logo isn't stretched or cropped */
+  width: 100%;      /* Slightly smaller than 100% gives the logo "room to breathe" */
+  height: 100%;
+  object-fit: contaim; /* Ensures the logo isn't stretched or cropped */
   display: block;
 }
 
