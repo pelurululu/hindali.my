@@ -164,6 +164,7 @@ select {
   object-fit: contain; /* Keeps the logo from stretching */
   display: block;
   filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1)); /* Soft shadow for depth */
+  overflow: hidden;
 }
 
 /* Optional: Slight pulse effect when hovering over the brand */
